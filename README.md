@@ -2,8 +2,8 @@
 ## Google x Kaggle AI Agents Intensive Capstone Project
 
 **Track:** Concierge Agents
-
 **Author:** Ratheshan Sathiyamoorthy
+---
 
 ### 📖 Project Overview
 SwiftPlan is a Multi-Agent System designed to eliminate the stress of travel planning. It automates the research and scheduling process, creating personalized, budget-conscious itineraries in seconds.
@@ -19,6 +19,22 @@ This project demonstrates three key concepts from the course:
 
 3.  **Observability & Memory:** * **Session Memory:** Maintains context across the research and planning phases.
     * **Logging:** Detailed console logs track the agent's thought process, tool usage, and execution status.
+
+### Diagram
+
+```mermaid
+flowchart LR
+    User([User]) --> SwiftPlan{{SwiftPlan App}}
+    SwiftPlan -->|1. Task: Find activities & weather| ResearchAgent[Research Agent]
+    ResearchAgent -->|Search Query| GoogleSearchTool[[Google Search Tool]]
+    GoogleSearchTool -->|Search Results| ResearchAgent
+    ResearchAgent -->|Research Data| SwiftPlan
+    SwiftPlan -->|2. Task: Create itinerary + Data| PlannerAgent[Planner Agent]
+    PlannerAgent -->|Convert Budget| CurrencyConverterTool[[Currency Converter Tool]]
+    CurrencyConverterTool -->|Converted Amount| PlannerAgent
+    PlannerAgent -->|Generated Itinerary| FinalItinerary[(Final Itinerary)]
+    FinalItinerary -->|Output| User
+```
 
 ### 🚀 How to Run
 1.  Add your `GEMINI_API_KEY` in the **Add-ons -> Secrets** menu.
